@@ -3,11 +3,18 @@ import styled from 'styled-components'
 import ImgSlider from './ImgSlider'
 import Viewers from './Viewers'
 import Movies from './Movies'
-
+import db from '../firebase'
+import { doc } from 'firebase/firestore'
 
 
 function Home() {
-
+  useEffect(()=>{
+    db.collection("mvoies").onSnapshot((snapshot)=>{
+      let tempMovies = snapshot.docs.map(()=>{
+        return {id: doc.id, ...doc.data()}
+      })
+    })
+  }, [])
   return (
     <Container>
         <ImgSlider/>
