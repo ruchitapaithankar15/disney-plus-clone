@@ -8,11 +8,6 @@ import Movies from './Movies'
 
 
 function Home() {
-  useEffect(()=>{
-    db.collection("movies").onSnapshot((snapshot)=>{
-        console.log(snapshot);
-    })
-  },[])
 
   return (
     <Container>
