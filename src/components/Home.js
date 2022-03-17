@@ -13,6 +13,7 @@ function Home() {
       let tempMovies = snapshot.docs.map(()=>{
         return {id: doc.id, ...doc.data()}
       })
+      console.log(tempMovies);
     })
   }, [])
   return (
