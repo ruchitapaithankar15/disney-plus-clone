@@ -6,16 +6,19 @@ import Movies from './Movies'
 import db from '../firebase'
 import { doc } from 'firebase/firestore'
 import { useDispatch } from 'react-redux'
-import {setMovies} from '../features/movie/movieSlices'
+import {setMovies} from '../features/movie/movieSlice'
 
 
 function Home() {
+  const dispatch = useDispatch();
   useEffect(()=>{
-    db.collection("mvoies").onSnapshot((snapshot)=>{
-      let tempMovies = snapshot.docs.map(()=>{
+    db.collection("movies").onSnapshot((snapshot)=>{
+      let tempMovies = snapshot.docs.map((doc)=>{
+        //console.log(doc.data());
         return {id: doc.id, ...doc.data()}
       })
-      console.log(tempMovies);
+      //dispatch(setMovies(tempMovies));
+      //console.log(tempMovies);
     })
   }, [])
   return (
