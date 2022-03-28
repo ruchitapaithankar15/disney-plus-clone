@@ -10,10 +10,13 @@ import {setMovies} from '../features/movie/movieSlice'
 
 
 function Home() {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
   useEffect(()=>{
     db.collection("movies").onSnapshot((snapshot)=>{
-      console.log(snapshot);
+      let tempMovies = snapshot.docs.map((doc)=>{
+        return {id: doc.id, ...doc.data()}
+      })
+      dispatch(setMovies(tempMovies));
     })
   }, [])
   return (
