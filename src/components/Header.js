@@ -1,5 +1,12 @@
 import React from 'react'
+import { findRenderedComponentWithType } from 'react-dom/test-utils'
 import styled from 'styled-components'
+import {
+    selectUsername,
+    selectUserPhoto
+} from "../features/user/userSlice"
+import {userSelector} from "react-redux"
+
 
 function Header() {
   return (
