@@ -1,4 +1,5 @@
 import React from 'react'
+import {auth, provider} from "../firebase"
 import { findRenderedComponentWithType } from 'react-dom/test-utils'
 import styled from 'styled-components'
 import {
@@ -11,13 +12,21 @@ import {useSelector} from "react-redux"
 function Header() {
     const username = useSelector(selectUsername);
     const userPhoto = useSelector(selectUserPhoto);
+
+
+    const signIn = () =>{
+        auth.signInWithPopup(provider)
+        .then((result) => {
+            console.log(result);
+        })
+    }
   return (
     <Nav>
       <Logo src="/images/logo.svg"/>
       {
           !username ? (
               <LoginContainer>
-                  <Login>Login</Login>
+                  <Login onClick={signIn}>Login</Login>
               </LoginContainer>
             ):
           <>
