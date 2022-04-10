@@ -15,8 +15,8 @@ function Header() {
     <Nav>
       <Logo src="/images/logo.svg"/>
       {
-          !username ? 
-            <Login>Login</Login>:
+          !username ? (
+            <Login>Login</Login>):
           <>
             <NavMenu>
                 <a>
