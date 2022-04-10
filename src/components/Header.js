@@ -9,42 +9,50 @@ import {userSelector} from "react-redux"
 
 
 function Header() {
+    const username = userSelector(selectUsername);
+    const userPhoto = userSelector(selectUserPhoto);
   return (
     <Nav>
       <Logo src="/images/logo.svg"/>
-      <NavMenu>
-          <a>
-              <img src='/images/home-icon.svg'/>
-              <span>HOME</span>
-          </a>
+      {
+          !username ? 
+            <Login>Login</Login>:
+          <>
+            <NavMenu>
+                <a>
+                    <img src='/images/home-icon.svg'/>
+                    <span>HOME</span>
+                </a>
 
-          <a>
-              <img src='/images/search-icon.svg'/>
-              <span>SEARCH</span>
-          </a>
+                <a>
+                    <img src='/images/search-icon.svg'/>
+                    <span>SEARCH</span>
+                </a>
 
-          <a>
-              <img src='/images/watchlist-icon.svg'/>
-              <span>WATCHLIST</span>
-          </a>
+                <a>
+                    <img src='/images/watchlist-icon.svg'/>
+                    <span>WATCHLIST</span>
+                </a>
 
-          <a>
-              <img src='/images/original-icon.svg'/>
-              <span>ORIGINALS</span>
-          </a>
+                <a>
+                    <img src='/images/original-icon.svg'/>
+                    <span>ORIGINALS</span>
+                </a>
 
-          <a>
-              <img src='/images/movie-icon.svg'/>
-              <span>MOVIES</span>
-          </a>
+                <a>
+                    <img src='/images/movie-icon.svg'/>
+                    <span>MOVIES</span>
+                </a>
 
-          <a>
-              <img src='/images/series-icon.svg'/>
-              <span>SERIES</span>
-          </a>
+                <a>
+                    <img src='/images/series-icon.svg'/>
+                    <span>SERIES</span>
+                </a>
 
-          <UserImg src='/images/user.jpg'/>
-      </NavMenu>
+            <UserImg src='/images/user.jpg'/>
+        </NavMenu>
+          </>
+      }     
     </Nav>
   )
 }
