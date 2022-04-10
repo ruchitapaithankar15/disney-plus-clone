@@ -4,20 +4,27 @@ import { findRenderedComponentWithType } from 'react-dom/test-utils'
 import styled from 'styled-components'
 import {
     selectUsername,
-    selectUserPhoto
+    selectUserPhoto,
+    setUserLogin
 } from "../features/user/userSlice"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 
 
 function Header() {
+    const dispatch = useDispatch();
     const username = useSelector(selectUsername);
     const userPhoto = useSelector(selectUserPhoto);
 
 
     const signIn = () =>{
         auth.signInWithPopup(provider)
+        let user = result.user
         .then((result) => {
-            console.log(result);
+            dispatch(setUserLogin({
+                name:user.displayName,
+                email:user.email,
+                photo: user.photoURL
+            }))
         })
     }
   return (
