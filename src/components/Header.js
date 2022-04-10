@@ -5,12 +5,12 @@ import {
     selectUsername,
     selectUserPhoto
 } from "../features/user/userSlice"
-import {userSelector} from "react-redux"
+import {useSelector} from "react-redux"
 
 
 function Header() {
-    const username = userSelector(selectUsername);
-    const userPhoto = userSelector(selectUserPhoto);
+    const username = useSelector(selectUsername);
+    const userPhoto = useSelector(selectUserPhoto);
   return (
     <Nav>
       <Logo src="/images/logo.svg"/>
