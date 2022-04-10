@@ -2,16 +2,20 @@ import React from 'react'
 import {auth, provider} from "../firebase"
 import { findRenderedComponentWithType } from 'react-dom/test-utils'
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 import {
     selectUsername,
     selectUserPhoto,
-    setUserLogin
+    setUserLogin,
+    setSignOut
 } from "../features/user/userSlice"
 import {useDispatch, useSelector} from "react-redux"
+import { consoleOrigin } from 'firebase-tools/lib/api'
 
 
 function Header() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const username = useSelector(selectUsername);
     const userPhoto = useSelector(selectUserPhoto);
 
@@ -25,6 +29,14 @@ function Header() {
                 email:user.email,
                 photo: user.photoURL
             }))
+        })
+    }
+
+    const signOut = () =>{
+        auth.signOut()
+        .then(()=> {
+            dispatch(setSignOut());
+            history.push("/login")
         })
     }
   return (
@@ -68,7 +80,8 @@ function Header() {
                     <span>SERIES</span>
                 </a>
 
-            <UserImg src='/images/user.jpg'/>
+            <UserImg onClick={signOut}
+             src='/images/user.jpg'/>
         </NavMenu>
           </>
       }     
